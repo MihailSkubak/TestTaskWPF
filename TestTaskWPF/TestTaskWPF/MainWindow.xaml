@@ -1,0 +1,72 @@
+﻿<Window x:Class="TestTaskWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestTaskWPF"
+         xmlns:HelixToolkit="clr-namespace:HelixToolkit.Wpf;assembly=HelixToolkit.Wpf"
+        mc:Ignorable="d"
+        Title="Figure" Height="450" Width="800" Style="{StaticResource CustomWindow}">
+   
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="161*"/>
+            <ColumnDefinition Width="631*"/>
+        </Grid.ColumnDefinitions>
+        <Grid HorizontalAlignment="Left" Height="250" Margin="4,37,0,0" VerticalAlignment="Top" Width="304" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="249*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <HelixToolkit:HelixViewport3D x:Name="myView" ZoomExtentsWhenLoaded="True" Margin="-198,-36,-562,-52" RenderTransformOrigin="0.501,0.492" HorizontalAlignment="Right" Width="1064" Height="338" VerticalAlignment="Top" Grid.RowSpan="2">
+                <HelixToolkit:SunLight/>
+                <HelixToolkit:GridLinesVisual3D Width="8" Length="8" MinorDistance="1" MajorDistance="1" Thickness="0.01"/>
+            </HelixToolkit:HelixViewport3D>
+           
+        </Grid>
+
+
+        <ListView x:Name="myListView"  Margin="0,0,0,138" SelectionChanged="MyListView_SelectionChanged" HorizontalAlignment="Left" Width="158" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Content="LOAD" Margin="23,0,0,41" VerticalAlignment="Bottom" Height="41" Click="Button_LOAD" Name="loadBtn" Grid.Column="1" HorizontalAlignment="Left" Width="80"/>
+        <Button Content="CLEAR" HorizontalAlignment="Left" Margin="133,0,0,41" VerticalAlignment="Bottom" Width="88" Height="41" RenderTransformOrigin="-0.32,0.598" Click="Button_CLEAR" Name="clearBtn" Grid.Column="1"/>
+        <Button Content="START" Margin="529,0,0,41" RenderTransformOrigin="0.1,-1"  Name="startBtn" Click="Button_START" Grid.Column="1" Height="41" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="92"/>
+        <Button Content="STOP" Margin="439,0,0,41" RenderTransformOrigin="-0.309,0.6" Click="Button_STOP" Name="stopBtn" Grid.Column="1" Height="41" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="85"/>
+
+        <Slider Name="MinZ" Margin="305,0,0,57"
+        Minimum="-25" Maximum="-5"
+        TickFrequency="1" IsSnapToTickEnabled="True" ValueChanged="MinZ_ValueChanged" Grid.Column="1" HorizontalAlignment="Left" Width="93" Height="25" VerticalAlignment="Bottom"/>
+        
+            <TextBlock Text="{Binding Value, ElementName=MinZ}"
+              Margin="410,0,10,62" Width="32" Name="minZ_Number_TB" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="1"/>
+            <TextBlock Text="{Binding Value, ElementName=MaxZ}"
+               Margin="415,0,10,32" Width="32" Height="22" Name="maxZ_Number_TB" VerticalAlignment="Bottom"  HorizontalAlignment="Left" Grid.Column="1"/>
+            
+        
+        <TextBox TextWrapping="Wrap" Text="Min Z" Width="44" Margin="246,0,0,59" x:Name="minZ_TB" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left" IsEnabled="False" Grid.Column="1"/>
+        <TextBox TextWrapping="Wrap" Text="Max Z" Width="44" Margin="246,0,0,30" Name="maxZ_TB" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left" IsEnabled="False" Grid.Column="1"/>
+        <Slider Name="MaxZ" Margin="305,0,0,27"
+        Minimum="5" Maximum="25"
+        TickFrequency="1" IsSnapToTickEnabled="True" ValueChanged="MaxZ_ValueChanged" RenderTransformOrigin="0.519,1.92" Grid.Column="1" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="93"/>
+        <StackPanel Orientation="Horizontal" Margin="-528,139,-1282,-37" Grid.ColumnSpan="2" RenderTransformOrigin="0.5,0.5" Height="317" VerticalAlignment="Top" HorizontalAlignment="Left" Width="2602">
+            <StackPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="0.774"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="4.486"/>
+                </TransformGroup>
+            </StackPanel.RenderTransform>
+        </StackPanel>
+        
+    </Grid>
+
+
+</Window>
